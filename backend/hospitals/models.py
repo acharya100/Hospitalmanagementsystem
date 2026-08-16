@@ -5,7 +5,7 @@ from users.models import User
 # Create your models here.
 
 class Hospital(models.Model):
-    """ cutom hospital model fields """
+    """ custom hospital model fields """
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,

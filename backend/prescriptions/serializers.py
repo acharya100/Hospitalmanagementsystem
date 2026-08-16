@@ -18,6 +18,6 @@ class PrescriptionItemSerializer(serializers.ModelSerializer):
         model = PrescriptionItem
         fields = [
             'id', 'prescription', 'medicine_name',
-            'unit_price', 'quantity'
+            'unit_price', 'quantity',
             'created_at','updated_at'
         ]

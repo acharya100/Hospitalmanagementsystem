@@ -6,7 +6,7 @@ class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
         model = Review
         fields =[
-            'id', 'patient','hospital'
+            'id', 'patient','hospital',
             'rating', 'comment',
             'created_at','updated_at'
         ]
