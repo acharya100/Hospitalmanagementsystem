@@ -2,6 +2,7 @@ from rest_framework import serializers
 from hospitals.models import Hospital
 
 class HospitalSerializer(serializers.ModelSerializer):
+    """custom hospital serializer fields"""
     class Meta:
         model = Hospital
         fields = [
