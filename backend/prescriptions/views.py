@@ -3,6 +3,8 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.shortcuts import get_object_or_404
+from rest_framework import status
+
 from prescriptions.models import Prescription, PrescriptionItem
 from prescriptions.serializers import PrescriptionSerializer, PrescriptionItemSerializer
 # Create your views here.
@@ -20,8 +22,8 @@ class PrescriptionListAPIView(APIView):
         if serializer.is_valid():
             serializer.save()
 
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class PrescriptionDetailAPIView(APIView):
     def get(self, request, pk):
@@ -38,13 +40,13 @@ class PrescriptionDetailAPIView(APIView):
             serializer.save()
 
             return Response(serializer.data)
-        return Response(serializer.errors, status=400)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         prescription = get_object_or_404(Prescription, id=pk)
         prescription.delete()
 
-        return Response(status=204)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 
@@ -61,8 +63,8 @@ class PrescriptionItemListAPIView(APIView):
         if serializer.is_valid():
             serializer.save()
 
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class PrescriptionItemDetailAPIView(APIView):
@@ -80,10 +82,10 @@ class PrescriptionItemDetailAPIView(APIView):
             serializer.save()
 
             return Response(serializer.data)
-        return Response(serializer.errors, status=400)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     def delete(self, request, pk):
         prescriptionitem = get_object_or_404(PrescriptionItem, id=pk)
         prescriptionitem.delete()
 
-        return Response(status=204)
+        return Response(status=status.HTTP_204_NO_CONTENT)
